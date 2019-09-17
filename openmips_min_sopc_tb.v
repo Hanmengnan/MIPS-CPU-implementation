@@ -1,18 +1,17 @@
-
 `include "defines.v"
 `timescale 1ns/1ps
 
 module openmips_min_sopc_tb();
-    
-    reg     CLOCK_50;
-    reg     rst;
+
+    reg CLOCK_50;
+    reg rst;
     initial begin
-        CLOCK_50             = 1'b0;
+        CLOCK_50 = 1'b0;
         forever #1 CLOCK_50 = ~CLOCK_50;
     end
-    
+
     initial begin
-        rst      = `RstEnable;
+        rst = `RstEnable;
         #100 rst = `RstDisable;
         // #50
         // #200 next=0;
@@ -48,14 +47,14 @@ module openmips_min_sopc_tb();
         // // #100 next =1;
         #4100 $stop;
     end
-    
+
     openmips_min_sopc openmips_min_sopc0(
-    .clk(CLOCK_50),
-    .rst(rst)
-    // .next(next),
-    // .del(del),
-    // .ledag(ledag)
+        .clk(CLOCK_50),
+        .rst(rst)
+        // .next(next),
+        // .del(del),
+        // .ledag(ledag)
 
     );
-    
+
 endmodule
